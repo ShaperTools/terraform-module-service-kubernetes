@@ -1,8 +1,3 @@
-terraform {
-  required_version = ">= 0.12.0"
-  required_providers {}
-}
-
 data "terraform_remote_state" "previous_state" {
   count = var.new ? 0 : 1
 
@@ -53,7 +48,7 @@ locals {
 }
 
 module "service-blue" {
-  source = "../service-environment-kubernetes.tf"
+  source = "../service-environment-kubernetes"
 
   disabled = local.active_environment == "blue" ? local.docker_image_active == "-" : local.docker_image_passive == "-"
 
@@ -75,7 +70,7 @@ module "service-blue" {
 }
 
 module "service-green" {
-  source = "../service-environment-kubernetes.tf"
+  source = "../service-environment-kubernetes"
 
   disabled = local.active_environment == "green" ? local.docker_image_active == "-" : local.docker_image_passive == "-"
 

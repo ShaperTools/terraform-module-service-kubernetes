@@ -1,11 +1,3 @@
-terraform {
-  required_version = ">= 0.12.0"
-  required_providers {
-    kubernetes = ">= 1.8.0"
-    acme       = ">= 1.5.0"
-  }
-}
-
 resource "acme_certificate" "certificate" {
   count = length(var.foreach_workaround)
 
