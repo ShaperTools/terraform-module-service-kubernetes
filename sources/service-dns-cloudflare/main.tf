@@ -1,10 +1,3 @@
-terraform {
-  required_version = ">= 0.12.0"
-  required_providers {
-    cloudflare = ">= 2.0.0"
-  }
-}
-
 locals {
   active_domains  = { for x in var.foreach_workaround : x.name => x if x.include_active_environment }
   passive_domains = { for x in var.foreach_workaround : x.name => x if x.include_passive_environment }
