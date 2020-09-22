@@ -1,3 +1,7 @@
+provider "acme" {
+  server_url = "https://acme-v02.api.letsencrypt.org/directory"
+}
+
 resource "acme_certificate" "certificate" {
   count = length(var.foreach_workaround)
 
