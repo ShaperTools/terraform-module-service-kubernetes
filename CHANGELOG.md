@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.8.0](https://github.com/ShaperTools/terraform-module-service-kubernetes/compare/v0.7.0...v0.8.0) (2020-09-23)
+
+
+### Bug Fixes
+
+* Change cloudflare provider namespace ([ba954cc](https://github.com/ShaperTools/terraform-module-service-kubernetes/commit/ba954cc))
+
+
+### Features
+
+* Update terraform minimum supported version to 0.13 ([7d6fd51](https://github.com/ShaperTools/terraform-module-service-kubernetes/commit/7d6fd51))
+
+
+
 # [0.7.0](https://github.com/edahlseng/terraform-module-service-kubernetes/compare/v0.6.0...v0.7.0) (2020-06-17)
 
 
