@@ -136,6 +136,8 @@ resource "kubernetes_deployment" "deployment" {
             }
           }
         }
+
+        node_selector = var.node_selector
       }
     }
   }

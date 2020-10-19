@@ -122,3 +122,9 @@ variable "volumes" {
   description = "List of volumes that can be mounted by containers belonging to the pod"
   default     = []
 }
+
+variable "node_selector" {
+  type        = map(string)
+  description = "NodeSelector should be specified for the pod to fit on a node (must match a node's labels to be scheduled on that node)"
+  default     = {}
+}
