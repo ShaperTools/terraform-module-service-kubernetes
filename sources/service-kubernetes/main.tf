@@ -67,6 +67,7 @@ module "service-blue" {
   service_environment_name = "${var.service_name}-blue"
   volume_mounts            = var.volume_mounts
   volumes                  = var.volumes
+  node_selector            = var.node_selector
 }
 
 module "service-green" {
@@ -89,4 +90,5 @@ module "service-green" {
   service_environment_name = "${var.service_name}-green"
   volume_mounts            = var.volume_mounts
   volumes                  = var.volumes
+  node_selector            = var.node_selector
 }
