@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.8.1](https://github.com/ShaperTools/terraform-module-service-kubernetes/compare/v0.7.0...v0.9.0) (2020-10-20)
+
+
+### Features
+
+* Add node_selector attribute to kubernetes_deployment resource ([6ac78b6](https://github.com/ShaperTools/terraform-module-service-kubernetes/commit/6ac78b6))
+
+
+
 # [0.8.0](https://github.com/ShaperTools/terraform-module-service-kubernetes/compare/v0.7.0...v0.8.0) (2020-09-23)
 
 
