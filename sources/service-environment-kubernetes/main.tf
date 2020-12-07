@@ -69,13 +69,19 @@ resource "kubernetes_deployment" "deployment" {
                       resource       = resource_field_ref.value.resource
                     }
                   }
-                  dynamic "secret_key_ref" {
-                    for_each = value_from.value.secret_key_ref
-                    content {
-                      key  = secret_key_ref.value.key
-                      name = secret_key_ref.value.name
-                    }
-                  }
+                }
+              }
+            }
+          }
+
+          dynamic "env" {
+            for_each = var.secret_envs
+            content {
+              name = env.value.var_name
+              value_from {
+                secret_key_ref {
+                  name = env.value.secret_name
+                  key  = env.value.secret_key
                 }
               }
             }

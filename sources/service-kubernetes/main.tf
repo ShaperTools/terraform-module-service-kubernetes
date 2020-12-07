@@ -56,6 +56,7 @@ module "service-blue" {
   desired_count            = var.desired_count
   docker_image             = local.active_environment == "blue" ? local.docker_image_active : local.docker_image_passive
   environment_variables    = var.environment_variables
+  secret_envs              = var.secret_envs
   image_pull_secret_name   = var.image_pull_secret_name
   ingresses                = local.active_environment == "blue" ? var.ingresses : local.ingresses_passive
   max_surge                = var.max_surge
@@ -79,6 +80,7 @@ module "service-green" {
   desired_count            = var.desired_count
   docker_image             = local.active_environment == "green" ? local.docker_image_active : local.docker_image_passive
   environment_variables    = var.environment_variables
+  secret_envs              = var.secret_envs
   image_pull_secret_name   = var.image_pull_secret_name
   ingresses                = local.active_environment == "green" ? var.ingresses : local.ingresses_passive
   max_surge                = var.max_surge
