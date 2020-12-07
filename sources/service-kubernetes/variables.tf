@@ -37,10 +37,15 @@ variable "environment_variables" {
       config_map_key_ref = list(object({ key = string, name = string }))
       field_ref          = list(object({ api_version = string, field_path = string }))
       resource_field_ref = list(object({ container_name = string, resource = string }))
-      secret_key_ref     = list(object({ key = string, name = string }))
     })
   }))
   description = "A list of environment variables to set within the pod's container"
+  default     = []
+}
+
+variable "secret_envs" {
+  type        = list(object({ var_name = string, secret_name = string, secret_key = string }))
+  description = "A list of secret environment variables to be taken from k8s secret"
   default     = []
 }
 
