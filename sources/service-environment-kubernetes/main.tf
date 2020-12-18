@@ -177,12 +177,13 @@ resource "kubernetes_ingress" "ingress" {
   count = var.disabled ? 0 : length(var.ingresses)
 
   metadata {
-    name = "${var.service_environment_name}${length(var.ingresses) > 1 ? "-${count.index + 1}" : ""}"
-    annotations = merge({
-      "kubernetes.io/ingress.class"        = "nginx"
-      "ingress.kubernetes.io/ssl-redirect" = "true" # Redirects http to https
-    }, var.ingresses[count.index].annotations)
+    name      = "${var.service_environment_name}${length(var.ingresses) > 1 ? "-${count.index + 1}" : ""}"
     namespace = var.namespace
+    annotations = merge(
+      { "kubernetes.io/ingress.class" = "nginx" },
+      var.disable_ingress_tls ? {} : map("ingress.kubernetes.io/ssl-redirect", "true"), # Redirects http to https
+      var.ingresses[count.index].annotations
+    )
   }
 
   spec {
@@ -205,7 +206,7 @@ resource "kubernetes_ingress" "ingress" {
     }
 
     dynamic "tls" {
-      for_each = { for x in var.ingresses[count.index].rules : x.tls_certificate_secret_name => x.host... }
+      for_each = var.disable_ingress_tls ? {} : { for x in var.ingresses[count.index].rules : x.tls_certificate_secret_name => x.host... }
       content {
         hosts       = tls.value
         secret_name = tls.key

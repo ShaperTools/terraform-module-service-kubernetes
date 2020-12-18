@@ -133,3 +133,9 @@ variable "node_selector" {
   description = "NodeSelector should be specified for the pod to fit on a node (must match a node's labels to be scheduled on that node)"
   default     = {}
 }
+
+variable "disable_ingress_tls" {
+  type        = bool
+  description = "Whether to disable ingress tls block"
+  default     = false
+}
