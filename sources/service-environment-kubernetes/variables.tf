@@ -123,8 +123,14 @@ variable "node_selector" {
   default     = {}
 }
 
-variable "disable_ingress_tls" {
-  type        = bool
-  description = "Whether to disable ingress tls block"
-  default     = false
+variable "mergeable_ingress" {
+  type = object({
+    enabled   = bool # used to identify if mergeable ingress resources should be configured
+    is_master = bool # used to identify if master ingress should be created
+  })
+  description = "Whether to spread the Ingress configuration for a common host"
+  default = {
+    enabled   = false
+    is_master = false
+  }
 }

@@ -69,7 +69,7 @@ module "service-blue" {
   volume_mounts            = var.volume_mounts
   volumes                  = var.volumes
   node_selector            = var.node_selector
-  disable_ingress_tls      = var.disable_ingress_tls
+  mergeable_ingress        = var.mergeable_ingress
 }
 
 module "service-green" {
@@ -94,5 +94,5 @@ module "service-green" {
   volume_mounts            = var.volume_mounts
   volumes                  = var.volumes
   node_selector            = var.node_selector
-  disable_ingress_tls      = var.disable_ingress_tls
+  mergeable_ingress        = var.mergeable_ingress
 }

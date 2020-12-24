@@ -181,7 +181,7 @@ resource "kubernetes_ingress" "ingress" {
     namespace = var.namespace
     annotations = merge(
       { "kubernetes.io/ingress.class" = "nginx" },
-      var.disable_ingress_tls ? {} : map("ingress.kubernetes.io/ssl-redirect", "true"), # Redirects http to https
+      var.mergeable_ingress.enabled ? { "nginx.org/mergeable-ingress-type" = "minion" } : { "ingress.kubernetes.io/ssl-redirect" = "true" },
       var.ingresses[count.index].annotations
     )
   }
@@ -206,11 +206,34 @@ resource "kubernetes_ingress" "ingress" {
     }
 
     dynamic "tls" {
-      for_each = var.disable_ingress_tls ? {} : { for x in var.ingresses[count.index].rules : x.tls_certificate_secret_name => x.host... }
+      for_each = var.mergeable_ingress.enabled ? {} : { for x in var.ingresses[count.index].rules : x.tls_certificate_secret_name => x.host... }
       content {
         hosts       = tls.value
         secret_name = tls.key
       }
     }
   }
+}
+
+resource "kubectl_manifest" "master_ingress" {
+  count = ! var.disabled && var.mergeable_ingress.enabled && var.mergeable_ingress.is_master ? 1 : 0
+
+  yaml_body = <<YAML
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ${var.service_environment_name}-master
+  namespace: ${var.namespace}
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.org/mergeable-ingress-type: "master"
+    ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  tls:
+  - hosts:
+    - ${var.ingresses[0].rules[0].host}
+    secretName: ${var.ingresses[0].rules[0].tls_certificate_secret_name}
+  rules:
+  - host: ${var.ingresses[0].rules[0].host}
+YAML
 }
