@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.8.4](https://github.com/ShaperTools/terraform-module-service-kubernetes/compare/v0.8.3...v0.8.4) (2020-12-24)
+
+
+### Features
+
+* Configure mergeable ingress types for all environments ([b8d30ce](https://github.com/ShaperTools/terraform-module-service-kubernetes/commit/b8d30ce))
+
+
+
 # [0.8.3](https://github.com/ShaperTools/terraform-module-service-kubernetes/compare/v0.8.2...v0.8.3) (2020-12-18)
 
 
