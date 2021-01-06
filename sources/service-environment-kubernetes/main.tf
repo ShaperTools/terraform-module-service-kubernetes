@@ -228,6 +228,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     nginx.org/mergeable-ingress-type: "master"
     ingress.kubernetes.io/ssl-redirect: "true"
+    ${var.mergeable_ingress.master_annotations}
 spec:
   tls:
   - hosts:

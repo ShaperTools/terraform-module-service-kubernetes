@@ -136,12 +136,14 @@ variable "node_selector" {
 
 variable "mergeable_ingress" {
   type = object({
-    enabled   = bool
-    is_master = bool
+    enabled            = bool
+    is_master          = bool
+    master_annotations = string
   })
   description = "Whether to spread the Ingress configuration for a common host"
   default = {
-    enabled   = false
-    is_master = false
+    enabled            = false
+    is_master          = false
+    master_annotations = ""
   }
 }

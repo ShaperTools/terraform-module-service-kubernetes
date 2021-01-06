@@ -125,12 +125,14 @@ variable "node_selector" {
 
 variable "mergeable_ingress" {
   type = object({
-    enabled   = bool # used to identify if mergeable ingress resources should be configured
-    is_master = bool # used to identify if master ingress should be created
+    enabled            = bool   # used to identify if mergeable ingress resources should be configured
+    is_master          = bool   # used to identify if master ingress should be created
+    master_annotations = string # custom annotations for master mergeable ingress
   })
   description = "Whether to spread the Ingress configuration for a common host"
   default = {
-    enabled   = false
-    is_master = false
+    enabled            = false
+    is_master          = false
+    master_annotations = ""
   }
 }
