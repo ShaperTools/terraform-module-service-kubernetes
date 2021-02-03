@@ -140,6 +140,14 @@ resource "kubernetes_deployment" "deployment" {
                 }
               }
             }
+
+            dynamic "nfs" {
+              for_each = volume.value.nfs == null ? [] : [volume.value.nfs]
+              content {
+                path   = nfs.value.path
+                server = nfs.value.server
+              }
+            }
           }
         }
 

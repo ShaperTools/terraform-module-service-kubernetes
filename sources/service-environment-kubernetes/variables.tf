@@ -103,16 +103,7 @@ variable "volume_mounts" {
 }
 
 variable "volumes" {
-  type = list(object({
-    name = string
-    config_map = object({
-      name = string
-      items = list(object({
-        key  = string
-        path = string
-      }))
-    })
-  }))
+  type        = list(any)
   description = "List of volumes that can be mounted by containers belonging to the pod"
   default     = []
 }
