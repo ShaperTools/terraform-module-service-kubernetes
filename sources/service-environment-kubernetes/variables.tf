@@ -108,6 +108,16 @@ variable "volumes" {
   default     = []
 }
 
+variable "nfs_volumes" {
+  type = list(object({
+    volume_name  = string
+    nfs_path     = string
+    nfs_endpoint = string
+  }))
+  description = "Represents an NFS mounts on the host"
+  default     = []
+}
+
 variable "node_selector" {
   type        = map(string)
   description = "NodeSelector should be specified for the pod to fit on a node (must match a node's labels to be scheduled on that node)"

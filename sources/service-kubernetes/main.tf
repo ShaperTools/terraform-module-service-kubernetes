@@ -68,8 +68,15 @@ module "service-blue" {
   service_environment_name = "${var.service_name}-blue"
   volume_mounts            = var.volume_mounts
   volumes                  = var.volumes
-  node_selector            = var.node_selector
-  mergeable_ingress        = var.mergeable_ingress
+  nfs_volumes = [
+    for vlm in var.nfs_volumes : {
+      volume_name  = vlm.volume_name,
+      nfs_path     = vlm.nfs_path_blue,
+      nfs_endpoint = vlm.nfs_endpoint
+    }
+  ]
+  node_selector     = var.node_selector
+  mergeable_ingress = var.mergeable_ingress
 }
 
 module "service-green" {
@@ -93,6 +100,13 @@ module "service-green" {
   service_environment_name = "${var.service_name}-green"
   volume_mounts            = var.volume_mounts
   volumes                  = var.volumes
-  node_selector            = var.node_selector
-  mergeable_ingress        = var.mergeable_ingress
+  nfs_volumes = [
+    for vlm in var.nfs_volumes : {
+      volume_name  = vlm.volume_name,
+      nfs_path     = vlm.nfs_path_green,
+      nfs_endpoint = vlm.nfs_endpoint
+    }
+  ]
+  node_selector     = var.node_selector
+  mergeable_ingress = var.mergeable_ingress
 }
