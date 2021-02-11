@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.9.1](https://github.com/ShaperTools/terraform-module-service-kubernetes/compare/v0.9.0...v0.9.1) (2021-02-11)
+
+
+### Features
+
+* Allow specifying different paths for NFS volumes ([b17a1ed](https://github.com/ShaperTools/terraform-module-service-kubernetes/commit/b17a1ed))
+
+
+
 # [0.9.0](https://github.com/ShaperTools/terraform-module-service-kubernetes/compare/v0.8.5...v0.9.0) (2021-02-03)
 
 
