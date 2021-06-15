@@ -10,7 +10,7 @@ resource "kubernetes_deployment" "deployment" {
   }
 
   spec {
-    replicas = var.desired_count
+    replicas = var.enable_hpa ? var.hpa_configuration.min_replicas : var.desired_count
 
     selector {
       match_labels = {
@@ -248,4 +248,46 @@ spec:
   rules:
   - host: ${var.ingresses[0].rules[0].host}
 YAML
+}
+
+resource "kubernetes_horizontal_pod_autoscaler" "hpa" {
+  count = var.enable_hpa ? 1 : 0
+
+  metadata {
+    name      = var.service_environment_name
+    namespace = var.namespace
+  }
+
+  spec {
+    min_replicas = var.hpa_configuration.min_replicas
+    max_replicas = var.hpa_configuration.max_replicas
+
+    scale_target_ref {
+      kind        = "Deployment"
+      name        = kubernetes_deployment.deployment[0].metadata.0.name
+      api_version = "apps/v1"
+    }
+
+    metric {
+      type = "Resource"
+      resource {
+        name = "memory"
+        target {
+          type                = "Utilization"
+          average_utilization = var.hpa_configuration.memory_utilization
+        }
+      }
+    }
+
+    metric {
+      type = "Resource"
+      resource {
+        name = "cpu"
+        target {
+          type                = "Utilization"
+          average_utilization = var.hpa_configuration.cpu_utilization
+        }
+      }
+    }
+  }
 }
