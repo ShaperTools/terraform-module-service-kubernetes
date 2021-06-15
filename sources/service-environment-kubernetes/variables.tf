@@ -137,3 +137,25 @@ variable "mergeable_ingress" {
     master_annotations = ""
   }
 }
+
+variable "enable_hpa" {
+  type        = bool
+  description = "Whether to use Horizontal Pod Autoscaler"
+  default     = false
+}
+
+variable "hpa_configuration" {
+  type = object({
+    min_replicas       = number # lower limit for the number of pods that can be set by the autoscaler
+    max_replicas       = number # upper limit for the number of pods that can be set by the autoscaler
+    cpu_utilization    = number ### the target value of the average of the resource metric across all relevant pods,
+    memory_utilization = number ### represented as a percentage of the requested value of the resource for the pods
+  })
+  description = "Horizontal Pod Autoscaler configuration"
+  default = {
+    min_replicas       = 2
+    max_replicas       = 10
+    cpu_utilization    = 70
+    memory_utilization = 80
+  }
+}

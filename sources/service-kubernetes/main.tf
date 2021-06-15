@@ -77,6 +77,8 @@ module "service-blue" {
   ]
   node_selector     = var.node_selector
   mergeable_ingress = var.mergeable_ingress
+  enable_hpa        = var.enable_hpa
+  hpa_configuration = var.hpa_configuration
 }
 
 module "service-green" {
@@ -109,4 +111,6 @@ module "service-green" {
   ]
   node_selector     = var.node_selector
   mergeable_ingress = var.mergeable_ingress
+  enable_hpa        = var.enable_hpa
+  hpa_configuration = var.hpa_configuration
 }
