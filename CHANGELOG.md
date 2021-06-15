@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.10.0](https://github.com/ShaperTools/terraform-module-service-kubernetes/compare/v0.9.1...v0.10.0) (2021-06-15)
+
+
+### Features
+
+* Add HPA configuration ([6948093](https://github.com/ShaperTools/terraform-module-service-kubernetes/commit/6948093))
+* Update kubernetes provider version ([3ce27c8](https://github.com/ShaperTools/terraform-module-service-kubernetes/commit/3ce27c8))
+
+
+
 # [0.9.1](https://github.com/ShaperTools/terraform-module-service-kubernetes/compare/v0.9.0...v0.9.1) (2021-02-11)
 
 
