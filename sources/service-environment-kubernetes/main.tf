@@ -34,6 +34,8 @@ resource "kubernetes_deployment" "deployment" {
       }
 
       spec {
+        enable_service_links            = false
+        automount_service_account_token = false
 
         container {
           image = var.docker_image
@@ -92,11 +94,11 @@ resource "kubernetes_deployment" "deployment" {
           image_pull_policy = "Always"
 
           resources {
-            requests {
+            requests = {
               cpu    = var.resource_requests.cpu
               memory = var.resource_requests.memory
             }
-            limits {
+            limits = {
               cpu    = var.resource_limits.cpu
               memory = var.resource_limits.memory
             }
