@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.10.1](https://github.com/ShaperTools/terraform-module-service-kubernetes/compare/v0.10.0...v0.10.1) (2021-06-21)
+
+
+### Features
+
+* Use CPU metric only in HPA configuration ([146be75](https://github.com/ShaperTools/terraform-module-service-kubernetes/commit/146be75))
+
+
+
 # [0.10.0](https://github.com/ShaperTools/terraform-module-service-kubernetes/compare/v0.9.1...v0.10.0) (2021-06-15)
 
 
