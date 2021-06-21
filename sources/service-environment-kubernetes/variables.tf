@@ -146,16 +146,14 @@ variable "enable_hpa" {
 
 variable "hpa_configuration" {
   type = object({
-    min_replicas       = number # lower limit for the number of pods that can be set by the autoscaler
-    max_replicas       = number # upper limit for the number of pods that can be set by the autoscaler
-    cpu_utilization    = number ### the target value of the average of the resource metric across all relevant pods,
-    memory_utilization = number ### represented as a percentage of the requested value of the resource for the pods
+    min_replicas    = number # lower limit for the number of pods that can be set by the autoscaler
+    max_replicas    = number # upper limit for the number of pods that can be set by the autoscaler
+    cpu_utilization = number # target average CPU utilization (represented as a percentage of requested CPU) over all the pods
   })
   description = "Horizontal Pod Autoscaler configuration"
   default = {
-    min_replicas       = 2
-    max_replicas       = 10
-    cpu_utilization    = 70
-    memory_utilization = 80
+    min_replicas    = 2
+    max_replicas    = 10
+    cpu_utilization = 80
   }
 }
